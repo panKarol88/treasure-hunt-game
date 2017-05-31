@@ -14,6 +14,7 @@ gem 'jwt'
 gem 'simple_command'
 
 group :development, :test do
+  gem 'rspec-rails', '~> 3.5'
   gem 'pry-byebug'
 end
 
