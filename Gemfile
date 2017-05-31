@@ -13,11 +13,13 @@ gem 'bcrypt', '~> 3.1.7'
 gem 'jwt'
 gem 'simple_command'
 gem 'geocoder'
+gem "haml-rails", "~> 0.9"
 
 group :development, :test do
   gem 'rspec-rails', '~> 3.5'
   gem 'factory_girl_rails'
   gem 'pry-byebug'
+  gem 'dotenv-rails'
 end
 
 group :development do

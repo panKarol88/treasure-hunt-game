@@ -16,9 +16,13 @@ class AskForTreasure
 
     def response
       distance = get_distance
+
       if @errors.size > 0
         { status: "ok", distance: "-1", error: "#{errors}" }
       else
+        if distance <= 5
+          HunterNotifierMailer.send_treasure_found_email(email, [treasure.latitude, treasure.longitude]).deliver
+        end
         { status: "ok", distance: distance }
       end
     end
