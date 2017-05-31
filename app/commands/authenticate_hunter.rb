@@ -16,7 +16,7 @@ class AuthenticateHunter
     def hunter
       hunter = Hunter.find_by_email(email)
       return hunter if hunter && hunter.authenticate(password)
-      
+
       errors.add :hunter_authentication, 'invalid credentials'
       nil
     end
