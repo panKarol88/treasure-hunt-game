@@ -12,6 +12,7 @@ gem 'puma', '~> 3.0'
 gem 'bcrypt', '~> 3.1.7'
 gem 'jwt'
 gem 'simple_command'
+gem 'geocoder'
 
 group :development, :test do
   gem 'rspec-rails', '~> 3.5'
