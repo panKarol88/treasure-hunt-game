@@ -10,6 +10,8 @@ gem 'rails', '~> 5.0.3'
 gem 'pg', '~> 0.18'
 gem 'puma', '~> 3.0'
 gem 'bcrypt', '~> 3.1.7'
+gem 'jwt'
+gem 'simple_command'
 
 group :development, :test do
   gem 'pry-byebug'
