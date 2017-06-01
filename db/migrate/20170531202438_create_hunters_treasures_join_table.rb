@@ -4,8 +4,8 @@ class CreateHuntersTreasuresJoinTable < ActiveRecord::Migration[5.0]
       t.integer :hunter_id, :null => false
       t.integer :treasure_id, :null => false
     end
-    
-    add_index(:hunters_treasures, [:hunter_id, :treasure_id], :unique => true)
+
+    add_index(:hunters_treasures, [:hunter_id, :treasure_id])
   end
 
 end

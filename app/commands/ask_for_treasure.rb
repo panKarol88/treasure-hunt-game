@@ -21,7 +21,7 @@ class AskForTreasure
       if @errors.size > 0
         { status: "ok", distance: "-1", error: "#{errors}" }
       else
-        if distance <= 5
+        if distance <= treasure.required_distance
           @hunter.treasures << treasure
           HunterNotifierMailer.send_treasure_found_email(email, treasure).deliver_later
         end
