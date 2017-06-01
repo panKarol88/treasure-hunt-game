@@ -1,6 +1,11 @@
 class TreasureHuntController < ApplicationController
   def hunt
-    response = AskForTreasure.call(hunter_params[:email], hunter_params[:current_location], current_hunter)
+    response = AskForTreasure.call(hunter_params, current_hunter)
+    render json: response.result
+  end
+
+  def analytics
+    response = GetStatistics.call(analytic_params)
     render json: response.result
   end
 
@@ -8,5 +13,9 @@ class TreasureHuntController < ApplicationController
 
     def hunter_params
       params.permit(:email, current_location: [])
+    end
+
+    def analytic_params
+      params.permit(:start_time, :end_time, :radius)
     end
 end

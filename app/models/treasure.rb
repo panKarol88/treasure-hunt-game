@@ -8,6 +8,8 @@ class Treasure < ApplicationRecord
   has_and_belongs_to_many :hunters, -> { uniq }
   has_many :requests
 
+  scope :active, -> { where(active: true) }
+
   def required_distance
     DEFAULT_DISTANCE
   end

@@ -1,9 +1,9 @@
 class AskForTreasure
   prepend SimpleCommand
 
-  def initialize(email, location, current_hunter)
-    @email = email
-    @location = location
+  def initialize(hunter_params, current_hunter)
+    @email = hunter_params[:email]
+    @location = hunter_params[:current_location]
     @hunter = current_hunter
     @errors = []
   end
