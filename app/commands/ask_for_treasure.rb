@@ -1,9 +1,10 @@
 class AskForTreasure
   prepend SimpleCommand
 
-  def initialize(email, location)
+  def initialize(email, location, current_hunter)
     @email = email
     @location = location
+    @hunter = current_hunter
     @errors = []
   end
 
@@ -21,9 +22,10 @@ class AskForTreasure
         { status: "ok", distance: "-1", error: "#{errors}" }
       else
         if distance <= 5
-          HunterNotifierMailer.send_treasure_found_email(email, [treasure.latitude, treasure.longitude]).deliver
+          @hunter.treasures << treasure
+          HunterNotifierMailer.send_treasure_found_email(email, treasure).deliver_later
         end
-        { status: "ok", distance: distance }
+        { status: "ok", distance: distance.to_i }
       end
     end
 

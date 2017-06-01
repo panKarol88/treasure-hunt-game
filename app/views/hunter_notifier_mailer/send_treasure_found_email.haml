@@ -4,9 +4,15 @@
     %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
   %body
     %h1
-      You found the treasure!
+      Hey, you’ve found a treasure, congratulations!
+    %p
+      You are
+      = @number_of_successful_hunters
+      treasure hunter who has found the treasure.
     %p
       The exact position of the treasure is:
       = @location[0]
+      N
       ,
       = @location[1]
+      E
