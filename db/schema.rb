@@ -23,8 +23,9 @@ ActiveRecord::Schema.define(version: 20170531202438) do
   end
 
   create_table "hunters_treasures", id: false, force: :cascade do |t|
-    t.integer "hunter_id"
-    t.integer "treasure_id"
+    t.integer "hunter_id",   null: false
+    t.integer "treasure_id", null: false
+    t.index ["hunter_id", "treasure_id"], name: "index_hunters_treasures_on_hunter_id_and_treasure_id", unique: true, using: :btree
   end
 
   create_table "treasures", force: :cascade do |t|
