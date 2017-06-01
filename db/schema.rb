@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170531202438) do
+ActiveRecord::Schema.define(version: 20170601070513) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -24,8 +24,19 @@ ActiveRecord::Schema.define(version: 20170531202438) do
 
   create_table "hunters_treasures", id: false, force: :cascade do |t|
     t.integer "hunter_id",   null: false
-    t.integer "treasure_id", null: false
+    t.integer "treasure_id"
     t.index ["hunter_id", "treasure_id"], name: "index_hunters_treasures_on_hunter_id_and_treasure_id", using: :btree
+  end
+
+  create_table "requests", force: :cascade do |t|
+    t.integer  "hunter_id"
+    t.integer  "treasure_id"
+    t.float    "latitude"
+    t.float    "longitude"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.index ["hunter_id"], name: "index_requests_on_hunter_id", using: :btree
+    t.index ["treasure_id"], name: "index_requests_on_treasure_id", using: :btree
   end
 
   create_table "treasures", force: :cascade do |t|
@@ -38,4 +49,6 @@ ActiveRecord::Schema.define(version: 20170531202438) do
     t.datetime "updated_at",                null: false
   end
 
+  add_foreign_key "requests", "hunters"
+  add_foreign_key "requests", "treasures"
 end

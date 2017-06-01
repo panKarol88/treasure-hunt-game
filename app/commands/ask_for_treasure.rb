@@ -16,10 +16,17 @@ class AskForTreasure
     attr_reader :email, :location, :errors
 
     def response
-      distance = get_distance
+      requests_count = Request.in_past_an_hour_for(@hunter).count
+      if treasure && requests_count >= treasure.requests_limit
+        @errors << "There is a limit of #{treasure.requests_limit} requests per hour. Sorry."
+      else
+        @hunter.requests.create(treasure: treasure, latitude: location[0],
+            longitude: location[1])
+        distance = get_distance
+      end
 
       if @errors.size > 0
-        { status: "ok", distance: "-1", error: "#{errors}" }
+        { status: "error", distance: "-1", error: "#{errors}" }
       else
         if distance <= treasure.required_distance
           @hunter.treasures << treasure
