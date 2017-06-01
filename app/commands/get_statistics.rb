@@ -17,8 +17,10 @@ class GetStatistics
 
     def response
       requests_to_return = []
-      requests.each do |r|
-        requests_to_return << { email: Hunter.find(r.hunter_id)&.email, current_location: [r.latitude, r.longitude] }
+      unless requests.nil?
+        requests.each do |r|
+          requests_to_return << { email: Hunter.find(r.hunter_id)&.email, current_location: [r.latitude, r.longitude] }
+        end
       end
       { status: "ok", requests: requests_to_return }
     end
